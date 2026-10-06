@@ -124,7 +124,7 @@ label.l{display:block;font-weight:600;margin:12px 0 4px;font-size:15px}
 #spl .sd{margin-top:14px;animation:up .6s .7s both}#spl .sd i{display:inline-block;width:9px;height:9px;margin:0 4px;border-radius:50%;background:var(--gold);animation:dot 1s ease-in-out infinite}#spl .sd i:nth-child(2){animation-delay:.15s}#spl .sd i:nth-child(3){animation-delay:.3s}
 .il{display:flex;flex-direction:column;gap:6px;margin:8px 0}.ir{display:flex;align-items:center;gap:10px;background:var(--sf);border-radius:10px;padding:5px 8px}.ir .th2{width:44px;height:44px}.ir .n{flex:1;font-weight:600;line-height:1.2}.ir .n small{display:block;color:var(--mut);font-weight:400;font-size:12px}.ir .q{flex:none;font:800 20px/1.5 'Baloo 2','Mukta',sans-serif;background:var(--gold);color:#2A1C00;border-radius:8px;padding:0 10px;min-width:46px;text-align:center}
 .od.nw{border-left:5px solid var(--gold)}
-.pv{display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--soft);color:var(--ink);border-radius:14px;padding:10px 14px;margin-top:12px}.pv small{display:block;color:var(--mut);font-size:13px;margin-top:2px}.pv b{font-size:16px}
+.pvs{display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--soft);color:var(--ink);border-radius:14px;padding:10px 14px;margin-top:12px}.pvs small{display:block;color:var(--mut);font-size:13px;margin-top:2px}.pvs b{font-size:16px}
 .rr{margin:14px 0 6px}.stars{display:flex;gap:4px;margin-top:4px}.stars button{font-size:36px;line-height:1.1;background:none;border:0;color:#B8C7BF;padding:2px 4px}.stars button.on{color:var(--gold)}
 .rt2{margin-top:3px}.sg{background:#1E8E5A;color:#fff;border-radius:6px;padding:1px 7px;font-weight:700;font-size:13px}.rt2 small{color:var(--mut)}
 .it .pc,.it h3{cursor:pointer}
@@ -155,8 +155,8 @@ label.l{display:block;font-weight:600;margin:12px 0 4px;font-size:15px}
 <div class="tg"><span data-i="t1"></span><span data-i="t2"></span><span data-i="t3"></span><button id="acb" type="button" class="acb" data-a="acct" data-i="acb"></button><button id="inb" type="button" class="acb" data-a="inst" data-i="ins"></button></div></div></header>
 <div class="strip" id="cl" hidden data-i="closed"></div>
 <div class="ofr" id="ofr" hidden></div>
-<section class="w" id="sbw" hidden><div class="sb" id="sb"></div></section>
-<section class="w" id="pvw" hidden><div class="pv" id="pv"></div></section>
+<section class="w" id="sbw" hidden><div class="sb" id="sbn"></div></section>
+<section class="w" id="pvw" hidden><div class="pvs" id="pvs"></div></section>
 <section class="w" id="adw" hidden><div class="ads" id="ads"></div></section>
 <main class="w"><div class="tools"><input class="in" id="q" type="search" data-p="search" aria-label="Search"><div class="chips" id="ch"></div></div>
 <section class="grid" id="gr" aria-live="polite"></section>
@@ -196,8 +196,8 @@ function tot(){let c=0,s=0;for(const id in cart){const p=find(id);if(!p||!p.s){d
 const d=Math.round(s*(ST.disc||0)/100),n=s-d,f=n&&n<ST.free?ST.fee:0,cd=CPN&&n>=CPN.min?Math.min(CPN.off,n):0;return{c,s,d,n,f,cd,t:n+f-cd}}
 function applyLang(){document.documentElement.lang=lang;document.querySelectorAll("[data-i]").forEach(e=>{e.innerHTML=t(e.dataset.i)});document.querySelectorAll("[data-p]").forEach(e=>{e.placeholder=t(e.dataset.p)});
 document.querySelectorAll(".lg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===lang));head();chips();grid();bar();renderPrev()}
-function renderPrev(){const o=MO.find(x=>x.st!=="cancelled"&&x.items&&x.items.length);$("pvw").hidden=!o;if(o)$("pv").innerHTML=`<div><b>${XT("pvt")}</b><small>${o.items.map(i=>esc(lang==="en"&&i.en?i.en:i.n)+" ×"+i.q).join(", ")}</small></div><div style="display:flex;flex-direction:column;gap:6px">${o.done&&!o.rt?`<button class="mini" data-a="rate" data-v="${esc(o.id)}">⭐ ${XT("rt_b")}</button>`:""}<button class="mini" data-a="again" data-v="${esc(o.id)}">🔁 ${XT("agn")}</button></div>`}
-function renderSB(){const b=SB,on=!!(b&&b.on!==false&&b.big);$("sbw").hidden=!on;if(on){$("sb").className="sb k"+(+b.c||0);$("sb").innerHTML=`<div class="sbb">${esc(b.big)}</div><div class="sbt"><b>${esc(b.t||"")}</b><small>${esc(b.s||"")}</small></div>`}}
+function renderPrev(){const o=MO.find(x=>x.st!=="cancelled"&&x.items&&x.items.length);$("pvw").hidden=!o;if(o)$("pvs").innerHTML=`<div><b>${XT("pvt")}</b><small>${o.items.map(i=>esc(lang==="en"&&i.en?i.en:i.n)+" ×"+i.q).join(", ")}</small></div><div style="display:flex;flex-direction:column;gap:6px">${o.done&&!o.rt?`<button class="mini" data-a="rate" data-v="${esc(o.id)}">⭐ ${XT("rt_b")}</button>`:""}<button class="mini" data-a="again" data-v="${esc(o.id)}">🔁 ${XT("agn")}</button></div>`}
+function renderSB(){const b=SB,on=!!(b&&b.on!==false&&b.big);$("sbw").hidden=!on;if(on){$("sbn").className="sb k"+(+b.c||0);$("sbn").innerHTML=`<div class="sbb">${esc(b.big)}</div><div class="sbt"><b>${esc(b.t||"")}</b><small>${esc(b.s||"")}</small></div>`}}
 function renderAds(){const l=AD.filter(a=>a.on!==false&&a.t);$("adw").hidden=!l.length;$("ads").innerHTML=l.map(a=>`<div class="ad2 k${+a.c||0}"><span class="e">${esc(a.e||"🎁")}</span><div><b>${esc(a.t)}</b><small>${esc(a.s||"")}</small></div></div>`).join("")}
 function head(){$("bn").textContent=brand();document.title=brand();$("cl").hidden=ST.open!==false;const ob=$("ofr");ob.textContent=ST.ban||"";ob.hidden=!ST.ban}
 function chips(){$("ch").innerHTML=CATS.map(c=>`<button class="chip" data-a="cat" data-v="${c[0]}" aria-pressed="${c[0]===cat}">${lang==="en"?c[2]:c[1]}</button>`).join("")}
